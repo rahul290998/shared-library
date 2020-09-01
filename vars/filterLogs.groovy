@@ -8,20 +8,5 @@ def call(String filter_string, int occurrence) {
     if (count > occurrence -1) {
         currentBuild.result='UNSTABLE'
     }
-pipeline{
-
-      agent any
-        
-        stages{
-
-              stage('maven build'){
-                  steps{
-                      script{
-		    	                bat "mvn clean install"
-                      	  }
-               	     }  
-                 }	
-        }
-}
 
 }
