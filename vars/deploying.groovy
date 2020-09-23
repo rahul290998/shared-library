@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 import org.apache.commons.lang.StringUtils
-def call(Map stageParams)
+def call(Map parameters)
 {
 pipeline
 {
@@ -11,9 +11,9 @@ stages
   {
     steps
     {
-     deploy adapters: stageParams.adapter,
-       contextPath: stageParams.context, 
-       war: stageParams.warr  
+     deploy adapters: parameters.adapter,
+       contextPath: parameters.context, 
+       war: parameters.warr  
     }
   }
   
