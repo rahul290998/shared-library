@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 import org.apache.commons.lang.StringUtils
-def call(Map stageParams)
+def call(Map parameters)
 {
 pipeline
 {
@@ -18,13 +18,13 @@ bat"mvn clean install"
             steps{
               
                     script {
-                        def server = Artifactory.server(stageParams.servername)
+                        def server = Artifactory.server(parameters.servername)
                
                         def rtMaven = Artifactory.newMavenBuild()
                    
                         rtMaven.resolver server: server, releaseRepo: 'libs-release', snapshotRepo: 'libs-snapshot'
                         rtMaven.deployer server: server, releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local'
-                        rtMaven.tool = stageParams.tool
+                        rtMaven.tool = parameters.tool
                         def buildInfo = rtMaven.run pom: 'pom.xml', goals: 'install'
                         server.publishBuildInfo buildInfo
                     }
