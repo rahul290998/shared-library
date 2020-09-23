@@ -17,7 +17,7 @@ bat"mvn clean install"
   stage('deploying')
   {
     steps{
-     deploy adapters: [tomcat8(credentialsId: stageParams.credentials, path: '', url: stageParams.patth)]
+     deploy adapters: [tomcat8(credentialsId: stageParams.credentials, path: '', url: stageParams.patth)],
        contextPath: stageParams.context, 
        war: stageParams.warr
 }
